@@ -1,7 +1,11 @@
 package src.teste;
 
 import src.Chess.ChessPiece;
+import src.Chess.ChessPosition;
 import src.Chess.Color;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class UI {
 
@@ -38,16 +42,27 @@ public class UI {
         System.out.println("  a b c d e f g h");
     }
 
+    public static ChessPosition readChessPosition(Scanner sc) {
+        try {
+            String s = sc.nextLine();
+            char column = s.charAt(0);
+            int row = Integer.parseInt(s.substring(1));
+            return new ChessPosition(column, row);
+        } catch (RuntimeException e) {
+            throw new InputMismatchException("Error reading ChessPosition! Valid values are from a1 to h8.");
+        }
+
+    }
+
+
     private static void printPiece(ChessPiece piece) {
-        
+
         if (piece == null) {
             System.out.print("-");
-        }
-        else {
+        } else {
             if (piece.getColor() == Color.WHITE) {
                 System.out.print(ANSI_WHITE + piece + ANSI_RESET);
-            }
-            else {
+            } else {
                 System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
             }
         }
