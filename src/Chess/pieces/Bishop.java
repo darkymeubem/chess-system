@@ -12,4 +12,9 @@ public class Bishop extends ChessPiece {
     public String toString() {
         return "B";
     }
+
+    @Override
+    public boolean[][] possibleMoves() {
+        return new boolean[0][];
+    }
 }
