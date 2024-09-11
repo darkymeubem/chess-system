@@ -8,10 +8,15 @@ import src.boardgame.BoardException;
 import src.boardgame.Piece;
 import src.boardgame.Position;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ChessMatch {
     private Board board;
     private int turn;
     private Color currentPlayer;
+    private List<Piece> piecesOnTheBoard = new ArrayList<>();
+    private List<Piece> capturedPieces = new ArrayList<>();
 
 
     public ChessMatch() {
@@ -70,10 +75,9 @@ public class ChessMatch {
     }
 
     private void validateTargetPosition(Position source, Position target) {
-        if (!board.piece(source).possibleMoves(target)) {
+        if (!board.piece(source).possibleMove(target)) {
             throw new ChessException("The chosen piece can't move to target position");
         }
-
     }
 
     private void nextTurn() {
@@ -91,12 +95,19 @@ public class ChessMatch {
         Piece p = board.removePiece(source);
         Piece t = board.removePiece(target);
         board.placePiece(p, target);
+        if (t != null) {
+            piecesOnTheBoard.remove(t);
+            capturedPieces.add(t);
+        }
+
+
         return t;
     }
 
 
     private void placeNewPiece(char column, int row, ChessPiece piece) {
         board.placePiece(piece, new ChessPosition(column, row).toPosition());
+        piecesOnTheBoard.add(piece);
     }
 
     private void initialSetup() {
