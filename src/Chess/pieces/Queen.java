@@ -5,14 +5,15 @@ import src.Chess.Color;
 import src.boardgame.Board;
 import src.boardgame.Position;
 
-public class Rook extends ChessPiece {
-    public Rook(Board board, Color color) {
+public class Queen extends ChessPiece {
+
+    public Queen(Board board, Color color) {
         super(board, color);
     }
 
     @Override
     public String toString() {
-        return "R";
+        return "Q";
     }
 
     @Override
@@ -105,7 +106,7 @@ public class Rook extends ChessPiece {
             mat[p.getRow()][p.getColum()] = true;
         }
 
-
         return mat;
+
     }
 }
