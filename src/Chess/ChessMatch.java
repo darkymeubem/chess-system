@@ -1,9 +1,6 @@
 package src.Chess;
 
-import src.Chess.pieces.Bishop;
-import src.Chess.pieces.King;
-import src.Chess.pieces.Pawn;
-import src.Chess.pieces.Rook;
+import src.Chess.pieces.*;
 import src.boardgame.Board;
 import src.boardgame.BoardException;
 import src.boardgame.Piece;
@@ -212,6 +209,8 @@ public class ChessMatch {
         placeNewPiece('f', 2, new Pawn(board, Color.WHITE));
         placeNewPiece('g', 2, new Pawn(board, Color.WHITE));
         placeNewPiece('h', 2, new Pawn(board, Color.WHITE));
+        placeNewPiece('b', 1, new Knight(board, Color.WHITE));
+        placeNewPiece('g', 1, new Knight(board, Color.WHITE));
         placeNewPiece('c', 1, new Bishop(board, Color.WHITE));
         placeNewPiece('f', 1, new Bishop(board, Color.WHITE));
 
@@ -227,6 +226,8 @@ public class ChessMatch {
         placeNewPiece('f', 7, new Pawn(board, Color.BLACK));
         placeNewPiece('g', 7, new Pawn(board, Color.BLACK));
         placeNewPiece('h', 7, new Pawn(board, Color.BLACK));
+        placeNewPiece('b', 8, new Knight(board, Color.BLACK));
+        placeNewPiece('g', 8, new Knight(board, Color.BLACK));
         placeNewPiece('c', 8, new Bishop(board, Color.BLACK));
         placeNewPiece('f', 8, new Bishop(board, Color.BLACK));
 
