@@ -1,14 +1,18 @@
 package src.Chess.pieces;
 
+import src.Chess.ChessMatch;
 import src.Chess.ChessPiece;
 import src.Chess.Color;
 import src.boardgame.Board;
 import src.boardgame.Position;
 
 public class Pawn  extends ChessPiece {
-    public Pawn(Board board, Color color) {
+    private ChessMatch chessMatch;
+    public Pawn(Board board, Color color,ChessMatch chessMatch) {
         super(board, color);
+        this.chessMatch = chessMatch;
     }
+
 
     @Override
     public String toString() {
@@ -46,6 +50,19 @@ public class Pawn  extends ChessPiece {
                 mat[p.getRow()][p.getColum()] = true;
 
             }
+
+            //#specialmove - enPassant (White)
+            if(position.getRow() == 3){
+                Position left = new Position(position.getRow(),position.getColum() -1 );
+                if(getBoard().positionExists(left) && isThereOpponentPiece(left) && getBoard().piece(left) == chessMatch.getEnPassantVunerable()){
+                    mat[left.getRow() -1][left.getColum()] = true;
+                };
+
+                Position right = new Position(position.getRow(),position.getColum() +1 );
+                if(getBoard().positionExists(right) && isThereOpponentPiece(right) && getBoard().piece(right) == chessMatch.getEnPassantVunerable()){
+                    mat[right.getRow() -1][right.getColum()] = true;
+                };
+            }
         }
 
 
@@ -75,6 +92,21 @@ public class Pawn  extends ChessPiece {
                 mat[p.getRow()][p.getColum()] = true;
 
             }
+
+            //#specialmove - enPassant (Black)
+            if(position.getRow() == 4){
+                Position left = new Position(position.getRow(),position.getColum() - 1 );
+                if(getBoard().positionExists(left) && isThereOpponentPiece(left) && getBoard().piece(left) == chessMatch.getEnPassantVunerable()){
+                    mat[left.getRow() +1][left.getColum()] = true;
+                };
+
+                Position right = new Position(position.getRow(),position.getColum() +1 );
+                if(getBoard().positionExists(right) && isThereOpponentPiece(right) && getBoard().piece(right) == chessMatch.getEnPassantVunerable()){
+                    mat[right.getRow() +1][right.getColum()] = true;
+                };
+            }
+
+
         }
 
 
