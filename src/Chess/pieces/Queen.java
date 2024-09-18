@@ -92,6 +92,7 @@ public class Queen extends ChessPiece {
         }
         if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
             mat[p.getRow()][p.getColum()] = true;
+
         }
 
 
@@ -105,7 +106,6 @@ public class Queen extends ChessPiece {
         if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
             mat[p.getRow()][p.getColum()] = true;
         }
-
         return mat;
 
     }
